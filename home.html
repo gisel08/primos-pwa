@@ -3,59 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | Primos y Compuestos</title>
+  <title>Inicio | Números Primos</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1e88e5">
+  <meta name="theme-color" content="#667eea">
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Comic Neue', cursive;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: rgba(0,0,0,0.2);
+    }
+    header h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3.2rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    }
+    header p {
+      font-size: 1.5rem;
+      opacity: 0.9;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 6px solid white;
+      margin: 1rem auto;
+      display: block;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card-btn {
+      background: white;
+      color: #667eea;
+      padding: 2rem;
+      border-radius: 25px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      transition: all 0.4s;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+
+    .card-btn:hover {
+      transform: translateY(-15px) scale(1.05);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    }
+
+    .card-btn span {
+      display: block;
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .status {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 1rem;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      font-size: 1.4rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      margin-top: 3rem;
+      background: rgba(0,0,0,0.3);
+      font-size: 1.2rem;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .floating { animation: float 6s ease-in-out infinite; }
+  </style>
 </head>
 <body>
+
   <header>
     <h1>Números Primos y Compuestos</h1>
-    <p>¡Bienvenido/a, Danna!</p>
+    <p>¡Aprende jugando!</p>
+    <img src="assets/icon-512.png" alt="Danna" class="avatar floating">
+    <p><strong>Danna Gisel Pérez Rivera</strong> • 6° Primaria</p>
   </header>
 
-  <main class="home-grid">
-    <div class="card">
-      <h2>Estado de conexión</h2>
-      <p id="status">Detectando...</p>
+  <div class="container">
+
+    <div class="status" id="status">
+      Detectando conexión...
     </div>
 
-    <button class="big-btn" onclick="location.href='leccion.html'">
-      📚 Ver la Lección
-    </button>
+    <div class="grid">
+      <a href="leccion.html" class="card-btn">
+        <span>Libro</span>
+        Ver la Lección Completa
+      </a>
 
-    <button class="big-btn" onclick="location.href='preguntas.html'">
-      ❓ Practicar Preguntas (aleatorias)
-    </button>
+      <a href="preguntas.html" class="card-btn">
+        <span>Brújula</span>
+        Practicar 50 Preguntas<br><small>(¡Siempre diferentes!)</small>
+      </a>
 
-    <button class="big-btn" onclick="activarNotificaciones()">
-      🔔 Activar Notificaciones Locales
-    </button>
+      <div class="card-btn" onclick="activarNotificaciones()">
+        <span>Notificación</span>
+        Activar Recordatorios
+      </div>
 
-    <button class="big-btn" onclick="usarSensores()">
-      Movimiento Sensores del Celular
-    </button>
+      <div class="card-btn" onclick="usarSensores()">
+        <span>Móvil</span>
+        Mover el Celular<br><small>(¡Prueba los sensores!)</small>
+      </div>
+    </div>
 
-    <button class="big-btn" onclick="alert('¡Todo está guardado para usar sin internet!')">
-      Funciona Offline
-    </button>
-  </main>
+  </div>
+
+  <div class="footer">
+    <p>Funciona 100% sin internet • PWA Educativa 2025</p>
+  </div>
 
   <script src="script.js"></script>
   <script>
-    // Registrar Service Worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
-    }
-
-    // Detectar online/offline
+    // Estado de conexión súper bonito
     function actualizarEstado() {
-      document.getElementById('status').textContent = navigator.onLine ? 
-        '🟢 Conectado a Internet' : '🔴 Sin conexión (funciona offline)';
+      const status = document.getElementById('status');
+      if (navigator.onLine) {
+        status.innerHTML = '¡Conectado a internet!';
+        status.style.background = 'rgba(76, 175, 80, 0.4)';
+      } else {
+        status.innerHTML = 'Sin internet → ¡Todo funciona offline!';
+        status.style.background = 'rgba(255, 152, 0, 0.4)';
+      }
     }
     window.addEventListener('online', actualizarEstado);
     window.addEventListener('offline', actualizarEstado);
     actualizarEstado();
+
+    // Registrar Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
   </script>
+
 </body>
 </html>

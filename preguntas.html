@@ -3,58 +3,186 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preguntas Aleatorias</title>
+  <title>Preguntas - Números Primos</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #a7ffeb, #17ead9);
+      font-family: 'Comic Neue', cursive;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    header a { color: white; text-decoration: none; font-weight: bold; }
+    header h1 { margin: 0.5rem 0; font-family: 'Fredoka One', cursive; font-size: 2rem; }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    .quiz-card {
+      background: white;
+      border-radius: 25px;
+      padding: 2rem;
+      margin: 1rem 0;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .pregunta-num {
+      font-size: 1.4rem;
+      color: #667eea;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .pregunta-texto {
+      font-size: 1.6rem;
+      color: #333;
+      margin: 1.5rem 0;
+      font-weight: bold;
+    }
+
+    .opciones {
+      display: grid;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .opcion-btn {
+      background: #e0f2f1;
+      border: none;
+      padding: 1.2rem;
+      font-size: 1.3rem;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .opcion-btn:hover {
+      background: #00bfa5;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .resultado {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: #667eea;
+      color: white;
+      border-radius: 20px;
+      font-size: 1.8rem;
+    }
+
+    .boton-repetir {
+      margin-top: 2rem;
+      padding: 1.5rem 3rem;
+      background: linear-gradient(45deg, #ff9a56, #ff6b6b);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+      transition: all 0.3s;
+    }
+
+    .boton-repetir:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(255, 107, 107, 0.6);
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <a href="home.html">← Inicio</a>
-    <h1>Preguntas Aleatorias (50)</h1>
+    <a href="home.html">Inicio</a>
+    <h1>Preguntas Aleatorias</h1>
+    <p>¡50 preguntas diferentes cada vez!</p>
   </header>
 
-  <main id="quiz"></main>
+  <div class="container">
+    <div id="quiz-container"></div>
+  </div>
 
   <script>
-    let preguntas = [], actual = 0, correctas = 0;
+    let preguntas = [];
+    let indice = 0;
+    let correctas = 0;
 
     fetch('data/leccion-primos.json')
       .then(r => r.json())
       .then(data => {
+        // Mezclamos las preguntas CADA VEZ que se carga la página
         preguntas = data.preguntas.sort(() => Math.random() - 0.5);
-        mostrar();
+        mostrarPregunta();
       });
 
-    function mostrar() {
-      if (actual >= preguntas.length) {
-        document.getElementById('quiz').innerHTML = `
-          <div class="card grande">
-            <h2>¡Terminaste!</h2>
-            <p>Obtuviste <strong>${correctas}/${preguntas.length}</strong> correctas</p>
-            <button class="big-btn" onclick="location.reload()">Jugar de nuevo</button>
-          </div>`;
+    function mostrarPregunta() {
+      if (indice >= preguntas.length) {
+        // === FINAL DEL QUIZ ===
+        document.getElementById('quiz-container').innerHTML = `
+          <div class="quiz-card">
+            <h2>¡Excelente!</h2>
+            <div class="resultado">
+              Obtuviste <strong>${correctas}</strong> de ${preguntas.length} correctas
+            </div>
+            <p>¡Eres un experto en números primos!</p>
+            
+            <button class="boton-repetir" onclick="location.reload()">
+              Volver a Practicar (preguntas nuevas)
+            </button>
+            
+            <br><br>
+            <a href="home.html" style="color:#667eea; text-decoration:none;">
+              ← Volver al inicio
+            </a>
+          </div>
+        `;
         return;
       }
 
-      const p = preguntas[actual];
-      const ops = [...p.opciones].sort(() => Math.random() - 0.5);
+      const p = preguntas[indice];
+      const opcionesMezcladas = [...p.opciones].sort(() => Math.random() - 0.5);
 
-      document.getElementById('quiz').innerHTML = `
-        <div class="card">
-          <p><strong>Pregunta ${actual + 1} de ${preguntas.length}</strong></p>
-          <h3>${p.pregunta}</h3>
-          ${ops.map(op => `
-            <button class="opcion" onclick="responder('${op}')">${op}</button>
-          `).join('')}
-        </div>`;
+      document.getElementById('quiz-container').innerHTML = `
+        <div class="quiz-card">
+          <div class="pregunta-num">Pregunta ${indice + 1} de ${preguntas.length}</div>
+          <div class="pregunta-texto">${p.pregunta}</div>
+          
+          <div class="opciones">
+            ${opcionesMezcladas.map(op => `
+              <button class="opcion-btn" onclick="responder('${op}')">
+                ${op}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
     }
 
     function responder(seleccion) {
-      if (seleccion === preguntas[actual].correcta) correctas++;
-      actual++;
-      mostrar();
+      if (seleccion === preguntas[indice].correcta) {
+        correctas++;
+      }
+      indice++;
+      mostrarPregunta();
     }
 
+    // Para que funcione el botón desde HTML
     window.responder = responder;
   </script>
+
 </body>
 </html>
