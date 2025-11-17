@@ -8,94 +8,130 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       font-family: 'Comic Neue', cursive;
       margin: 0;
       padding: 0;
+      color: #333;
+      min-height: 100vh;
     }
     header {
-      background: #00bcd4;
+      background: #5e35b1;
       padding: 1.5rem;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
     header a {
       color: white;
       text-decoration: none;
-      font-size: 1.1rem;
       font-weight: bold;
+      font-size: 1.1rem;
+
     }
     header h1 {
       color: white;
       margin: 0.5rem 0 0;
       font-family: 'Fredoka One', cursive;
-      font-size: 2rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      font-size: 2.2rem;
     }
+
     .container {
       max-width: 900px;
       margin: 2rem auto;
-      padding: 0 1rem;
+      padding: 1.5rem;
     }
-    .leccion-card {
+
+    .card {
       background: white;
-      border-radius: 20px;
-      padding: 2rem;
+      border-radius: 25px;
+      padding: 2.5rem;
       margin-bottom: 2rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
       text-align: center;
     }
-    .leccion-card h2 {
-      color: #e91e63;
+
+    .card h2 {
+      color: #d81b60;
       font-family: 'Fredoka One', cursive;
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
     }
-    .leccion-card h3 {
-      color: #ff9800;
-      font-size: 1.8rem;
-      margin: 1.5rem 0 1rem;
+
+    .card h3 {
+      color: #1976d2;
+      font-size: 1.9rem;
+      margin: 2rem 0 1rem;
     }
-    .leccion-card p {
-      font-size: 1.25rem;
-      line-height: 1.8;
+
+    .card p {
+      font-size: 1.35rem;
+      line-height: 1.9;
+      margin: 1.2rem 0;
       color: #444;
-      margin: 1rem 0;
     }
+
     .primo {
-      background: #c8e6c9;
-      padding: 1rem;
-      border-radius: 15px;
-      margin: 1rem 0;
-      border-left: 8px solid #4caf50;
-    }
-    .compuesto {
-      background: #ffcdd2;
-      padding: 1rem;
-      border-radius: 15px;
-      margin: 1rem 0;
-      border-left: 8px solid #f44336;
-    }
-    .importante {
-      background: #fff3e0;
-      padding: 1rem;
-      border-radius: 15px;
+      background: #e8f5e9;
+      padding: 1.5rem;
+      border-radius: 18px;
+      border-left: 10px solid #43a047;
       margin: 1.5rem 0;
-      border: 3px solid #ff9800;
-      font-weight: bold;
-      font-size: 1.3rem;
     }
+
+    .compuesto {
+      background: #ffebee;
+      padding: 1.5rem;
+      border-radius: 18px;
+      border-left: 10px solid #e53935;
+      margin: 1.5rem 0;
+    }
+
+    .importante {
+      background: #fff8e1;
+      padding: 1.5rem;
+      border-radius: 18px;
+      border: 4px dashed #ff8f00;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin: 2rem 0;
+    }
+
     img {
       max-width: 100%;
-      border-radius: 15px;
-      margin: 1.5rem 0;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      border-radius: 20px;
+      margin: 2rem 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
+
+    .boton-prueba {
+      display: block;
+      margin: 3rem auto;
+      padding: 1.8rem 4rem;
+      background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: 'Fredoka One', cursive;
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      box-shadow: 0 15px 35px rgba(255, 107, 107, 0.5);
+      transition: all 0.4s;
+      text-decoration: none;
+    }
+
+    .boton-prueba:hover {
+      transform: scale(1.1);
+      box-shadow: 0 25px 50px rgba(255, 107, 107, 0.7);
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
-      color: #666;
-      font-size: 1.1rem;
+      color: white;
+      font-size: 1.2rem;
+      background: rgba(0,0,0,0.3);
+      margin-top: 3rem;
     }
   </style>
 </head>
@@ -107,37 +143,39 @@
   </header>
 
   <div class="container">
-    <div class="leccion-card">
+    <div class="card">
       <h2>Números Primos y Compuestos</h2>
 
       <div class="primo">
-        <h3>¿Qué es un número PRIMO?</h3>
-        <p>Un número <strong>primo</strong> es aquel que solo tiene <strong>dos divisores</strong>: el 1 y él mismo.</p>
-        <p>Ejemplos: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31...</p>
-        <p>¡El número 2 es el único primo par!</p>
+        <h3>Número PRIMO</h3>
+        <p>Solo tiene <strong>dos divisores</strong>: el 1 y él mismo.</p>
+        <p>Ejemplos: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41...</p>
+        <p>¡El 2 es el único número primo par!</p>
       </div>
 
       <div class="compuesto">
-        <h3>¿Qué es un número COMPUESTO?</h3>
-        <p>Un número <strong>compuesto</strong> tiene <strong>más de dos divisores</strong>.</p>
-        <p>Ejemplos: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25...</p>
+        <h3>Número COMPUESTO</h3>
+        <p>Tiene <strong>más de dos divisores</strong>.</p>
+        <p>Ejemplos: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 27, 28, 30...</p>
       </div>
 
       <div class="importante">
-        El número 1 <strong>NO es primo</strong> ni compuesto. ¡Es especial!
+        ¡El número 1 NO es primo ni compuesto!
       </div>
 
       <h3>Criba de Eratóstenes</h3>
-      <p>Es un método súper antiguo (¡hace más de 2000 años!) para encontrar números primos.</p>
-      <p>Se tachan todos los múltiplos de cada número empezando por el 2.</p>
-      
+      <p>Método para encontrar números primos tachando los múltiplos de cada número, empezando por el 2.</p>
       <img src="https://i.imgur.com/8Y5kR1J.png" alt="Criba de Eratóstenes">
 
-      <div class="leccion-card" style="background:#e8f5e8;">
-        <h3>¡Ahora ya sabes!</h3>
-        <p>Practica identificando números primos y compuestos.</p>
-        <p>¡Tú puedes reconocerlos fácilmente!</p>
+      <div style="background:#e3f2fd; padding:...">
+        <h3>¡Ya estás listo/a!</h3>
+        <p>Ahora sabes todo sobre números primos y compuestos.</p>
       </div>
+
+      <!-- BOTÓN FINAL QUE PIDE EL PROFESOR -->
+      <a href="preguntas.html" class="boton-prueba">
+        Prueba tus conocimientos (50 preguntas)
+      </a>
     </div>
   </div>
 
