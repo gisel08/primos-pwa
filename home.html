@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Primos y Compuestos</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1e88e5">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Números Primos y Compuestos</h1>
+    <p>¡Bienvenido/a, Danna!</p>
+  </header>
+
+  <main class="home-grid">
+    <div class="card">
+      <h2>Estado de conexión</h2>
+      <p id="status">Detectando...</p>
+    </div>
+
+    <button class="big-btn" onclick="location.href='leccion.html'">
+      📚 Ver la Lección
+    </button>
+
+    <button class="big-btn" onclick="location.href='preguntas.html'">
+      ❓ Practicar Preguntas (aleatorias)
+    </button>
+
+    <button class="big-btn" onclick="activarNotificaciones()">
+      🔔 Activar Notificaciones Locales
+    </button>
+
+    <button class="big-btn" onclick="usarSensores()">
+      Movimiento Sensores del Celular
+    </button>
+
+    <button class="big-btn" onclick="alert('¡Todo está guardado para usar sin internet!')">
+      Funciona Offline
+    </button>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    // Registrar Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+
+    // Detectar online/offline
+    function actualizarEstado() {
+      document.getElementById('status').textContent = navigator.onLine ? 
+        '🟢 Conectado a Internet' : '🔴 Sin conexión (funciona offline)';
+    }
+    window.addEventListener('online', actualizarEstado);
+    window.addEventListener('offline', actualizarEstado);
+    actualizarEstado();
+  </script>
+</body>
+</html>

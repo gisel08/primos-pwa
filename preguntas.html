@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas Aleatorias</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <a href="home.html">← Inicio</a>
+    <h1>Preguntas Aleatorias (50)</h1>
+  </header>
+
+  <main id="quiz"></main>
+
+  <script>
+    let preguntas = [], actual = 0, correctas = 0;
+
+    fetch('data/leccion-primos.json')
+      .then(r => r.json())
+      .then(data => {
+        preguntas = data.preguntas.sort(() => Math.random() - 0.5);
+        mostrar();
+      });
+
+    function mostrar() {
+      if (actual >= preguntas.length) {
+        document.getElementById('quiz').innerHTML = `
+          <div class="card grande">
+            <h2>¡Terminaste!</h2>
+            <p>Obtuviste <strong>${correctas}/${preguntas.length}</strong> correctas</p>
+            <button class="big-btn" onclick="location.reload()">Jugar de nuevo</button>
+          </div>`;
+        return;
+      }
+
+      const p = preguntas[actual];
+      const ops = [...p.opciones].sort(() => Math.random() - 0.5);
+
+      document.getElementById('quiz').innerHTML = `
+        <div class="card">
+          <p><strong>Pregunta ${actual + 1} de ${preguntas.length}</strong></p>
+          <h3>${p.pregunta}</h3>
+          ${ops.map(op => `
+            <button class="opcion" onclick="responder('${op}')">${op}</button>
+          `).join('')}
+        </div>`;
+    }
+
+    function responder(seleccion) {
+      if (seleccion === preguntas[actual].correcta) correctas++;
+      actual++;
+      mostrar();
+    }
+
+    window.responder = responder;
+  </script>
+</body>
+</html>

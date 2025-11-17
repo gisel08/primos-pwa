@@ -1,0 +1,16 @@
+{
+  "leccion": "<h2>Números primos y compuestos</h2><p>Un número <strong>primo</strong> es aquel que solo tiene dos divisores: 1 y él mismo.</p><p>Ejemplos: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31...</p><p>El número 2 es el único primo par.</p><p>Un número <strong>compuesto</strong> tiene más de dos divisores.</p><p>Ejemplos: 4, 6, 8, 9, 10, 12, 14, 15...</p><p>El número 1 <strong>no es primo ni compuesto</strong>.</p><h3>Criba de Eratóstenes</h3><p>Para encontrar primos hasta 100, tachamos los múltiplos de cada número empezando por 2.</p><img src='assets/criba.jpg' alt='Criba' style='max-width:100%'><p>¡Practica identificando números primos y compuestos!</p>",
+  
+  "preguntas": [
+    {"pregunta": "¿Es 7 un número primo?", "opciones": ["Sí", "No"], "correcta": "Sí"},
+    {"pregunta": "¿Es 15 primo o compuesto?", "opciones": ["Primo", "Compuesto"], "correcta": "Compuesto"},
+    {"pregunta": "¿Cuál es el único número primo par?", "opciones": ["0", "1", "2", "4"], "correcta": "2"},
+    {"pregunta": "¿El número 1 es primo?", "opciones": ["Sí", "No"], "correcta": "No"},
+    {"pregunta": "¿Cuántos divisores tiene un número primo?", "opciones": ["1", "2", "3", "Infinitos"], "correcta": "2"},
+    {"pregunta": "¿Es 29 un número primo?", "opciones": ["Sí", "No"], "correcta": "Sí"},
+    {"pregunta": "¿Es 51 primo?", "opciones": ["Sí", "No"], "correcta": "No"},
+    {"pregunta": "¿Cuál NO es primo?", "opciones": ["17", "23", "91", "31"], "correcta": "91"},
+    {"pregunta": "¿Es 97 primo?", "opciones": ["Sí", "No"], "correcta": "Sí"},
+    {"pregunta": "¿Cuántos números primos hay entre 1 y 10?", "opciones": ["2", "3", "4", "5"], "correcta": "4"}
+  ]
+}
