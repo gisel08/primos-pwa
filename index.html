@@ -3,25 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Primos y Compuestos</title>
+  <title>Números Primos y Compuestos</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1e88e5">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#667eea">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      font-family: 'Fredoka One', cursive;
+    }
+    .container {
+      animation: float 4s ease-in-out infinite;
+    }
+    .logo {
+      width: 180px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+    }
+    h1 {
+      font-size: 4rem;
+      margin: 0.5rem 0;
+      text-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+    }
+    p {
+      font-size: 2rem;
+      margin: 0.5rem 0;
+    }
+    .loader {
+      width: 80px;
+      height: 80px;
+      border: 8px solid rgba(255,255,255,0.3);
+      border-top: 8px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+    small { font-size: 1.3rem; opacity: 0.9; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
-<body class="splash">
-  <div class="splash-container">
+<body>
+  <div class="container">
     <img src="assets/icon-512.png" alt="Logo" class="logo">
     <h1>Múltiplos y Divisores</h1>
-    <p>Números Primos y Compuestos<br>6° Primaria</p>
+    <p>Números Primos y Compuestos</p>
     <div class="loader"></div>
+    <p>6° Primaria</p>
     <small>Danna Gisel Pérez Rivera</small>
   </div>
 
   <script>
-    // Después de 3 segundos va al home real
     setTimeout(() => {
-      window.location.href = "home.html";
-    }, 3000);
+      location.href = "home.html";
+    }, 4000);
   </script>
 </body>
 </html>
