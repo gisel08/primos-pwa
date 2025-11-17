@@ -28,3 +28,29 @@ button:hover { background:#1e88e5; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 .opcion { display:block; width:90%; margin:1rem auto; }
+
+/* Mejoras para toda la app - pon esto al final de tu styles.css */
+body { 
+  font-family: 'Comic Neue', cursive !important; 
+  background: linear-gradient(135deg, #e0f7fa, #b2ebf2) !important;
+}
+
+header { 
+  background: linear-gradient(to right, #00bcd4, #009688) !important;
+}
+
+.big-btn {
+  background: linear-gradient(to right, #ff9800, #f57c00);
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(255,152,0,0.4);
+  transition: all 0.3s;
+}
+
+.big-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255,152,0,0.6);
+}
